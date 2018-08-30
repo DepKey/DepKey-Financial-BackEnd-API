@@ -1,0 +1,1634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CentralDepKeyStageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="Limit" Type="float" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="StaffID" Type="int" />
+    <Property Name="AccountTypeID" Type="int" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Outstanding" Type="bit" />
+    <Property Name="BranchID" Type="int" />
+  </EntityType>
+  <EntityType Name="Airline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="SabreCode" Type="nvarchar" MaxLength="250" />
+    <Property Name="IATACode" Type="nvarchar" MaxLength="250" />
+    <Property Name="Code" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="JournalNumber" Type="int" Nullable="false" />
+    <Property Name="JournalDate" Type="datetime" />
+    <Property Name="JournalTypeID" Type="int" Nullable="false" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="StaffID" Type="int" />
+    <Property Name="SalesID" Type="int" />
+    <Property Name="SalesStatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="JournalMovement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="MovementDescription" Type="nvarchar(max)" />
+    <Property Name="JournalID" Type="int" Nullable="false" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JournalMovementHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="MovementDescription" Type="nvarchar(max)" />
+    <Property Name="RejectionReason" Type="nvarchar(max)" />
+    <Property Name="JournalID" Type="int" Nullable="false" />
+    <Property Name="JournalMovementID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="ApprovalStatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" />
+    <Property Name="Action" Type="int" />
+    <Property Name="RelatedID" Type="int" />
+    <Property Name="StaffID" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="Lookup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="LookupOrder" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="LookupTypeID" Type="int" Nullable="false" />
+    <Property Name="RelatedID" Type="int" />
+  </EntityType>
+  <EntityType Name="LookupType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsSeen" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="RelatedID" Type="int" />
+  </EntityType>
+  <EntityType Name="OutStanding">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OsNumber" Type="int" Nullable="false" />
+    <Property Name="OsDate" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="JournalMovementID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="PaxName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="250" />
+    <Property Name="PNR" Type="nvarchar" MaxLength="250" />
+    <Property Name="DeletionDate" Type="datetime" />
+    <Property Name="Fare" Type="float" />
+    <Property Name="Tax" Type="float" />
+    <Property Name="TotalCost" Type="float" />
+    <Property Name="SalesAmount" Type="float" />
+    <Property Name="Profit" Type="float" />
+    <Property Name="Cash" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="Visa" Type="float" />
+    <Property Name="Advance" Type="float" />
+    <Property Name="Card" Type="float" />
+    <Property Name="Complementary" Type="float" />
+    <Property Name="Commision" Type="float" />
+    <Property Name="DKNumber" Type="bigint" />
+    <Property Name="InvoiceNumber" Type="int" />
+    <Property Name="InvoiceNumberPNR" Type="int" />
+    <Property Name="TicketNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="RefAmountFromProvider" Type="float" />
+    <Property Name="RefAmountToCustomer" Type="float" />
+    <Property Name="RefPaid" Type="bit" />
+    <Property Name="RefRemarks" Type="nvarchar(max)" />
+    <Property Name="RefDescription" Type="nvarchar(max)" />
+    <Property Name="SalesTypeID" Type="int" />
+    <Property Name="PaymentMethodID" Type="int" />
+    <Property Name="AirlineID" Type="int" />
+    <Property Name="CreatedStaffID" Type="int" />
+    <Property Name="AccountantStaffID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="SalesStatusID" Type="int" />
+    <Property Name="SubAccountID" Type="int" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="RecievableMainAccountID" Type="int" />
+    <Property Name="CreditAccountID" Type="int" />
+    <Property Name="BankAccountID" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SalesGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="TicketNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="250" />
+    <Property Name="PaxName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="250" />
+    <Property Name="PNR" Type="nvarchar" MaxLength="250" />
+    <Property Name="RejectionReason" Type="nvarchar" MaxLength="250" />
+    <Property Name="DeletionDate" Type="datetime" />
+    <Property Name="Fare" Type="float" />
+    <Property Name="Tax" Type="float" />
+    <Property Name="TotalCost" Type="float" />
+    <Property Name="SalesAmount" Type="float" />
+    <Property Name="Profit" Type="float" />
+    <Property Name="Cash" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="Visa" Type="float" />
+    <Property Name="Advance" Type="float" />
+    <Property Name="Card" Type="float" />
+    <Property Name="Complementary" Type="float" />
+    <Property Name="Commision" Type="float" />
+    <Property Name="DKNumber" Type="bigint" />
+    <Property Name="InvoiceNumber" Type="int" />
+    <Property Name="RefRemarks" Type="nvarchar(max)" />
+    <Property Name="RefDescription" Type="nvarchar(max)" />
+    <Property Name="SalesTypeID" Type="int" />
+    <Property Name="PaymentMethodID" Type="int" />
+    <Property Name="AirlineID" Type="int" />
+    <Property Name="CreatedStaffID" Type="int" />
+    <Property Name="AccountantStaffID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="SalesStatusID" Type="int" />
+    <Property Name="ApproveStatusID" Type="int" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="SubAccountID" Type="int" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="HistoryCreatedStaffID" Type="int" />
+    <Property Name="RecievableMainAccountID" Type="int" />
+    <Property Name="CreditAccountID" Type="int" />
+    <Property Name="BankAccountID" Type="int" />
+    <Property Name="InvoiceNumberPNR" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SalesMappingAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DebitCredit" Type="int" />
+    <Property Name="SalesCost" Type="int" />
+    <Property Name="SalesTypeID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="SalesMappingAccountPaymentMethod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentMethodID" Type="int" />
+    <Property Name="AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Username" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Limit" Type="nvarchar" MaxLength="250" />
+    <Property Name="UserPages" Type="nvarchar(max)" />
+    <Property Name="UserPermissions" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Account_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Account1" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="JournalTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Sales">
+    <End Role="Sales" Type="Self.Sales" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="SalesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovement_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovement">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovement_Journal">
+    <End Role="Journal" Type="Self.Journal" Multiplicity="1" />
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journal">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovement">
+        <PropertyRef Name="JournalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Journal">
+    <End Role="Journal" Type="Self.Journal" Multiplicity="1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journal">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="JournalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_JournalMovement">
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JournalMovement">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="JournalMovementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="ApprovalStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lookup_LookupType">
+    <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lookup">
+        <PropertyRef Name="LookupTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Airline">
+    <End Role="Airline" Type="Self.Airline" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AirlineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup2">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Sales">
+    <End Role="Sales" Type="Self.Sales" Multiplicity="0..1" />
+    <End Role="Sales1" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="CreatedStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Staff1">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AccountantStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Airline">
+    <End Role="Airline" Type="Self.Airline" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AirlineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup2">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup3">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="ApproveStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Sales">
+    <End Role="Sales" Type="Self.Sales" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_SalesHistory">
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="0..1" />
+    <End Role="SalesHistory1" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesHistory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="CreatedStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Staff1">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AccountantStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMappingAccount_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesMappingAccount" Type="Self.SalesMappingAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesMappingAccount">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMappingAccount_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesMappingAccount" Type="Self.SalesMappingAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesMappingAccount">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AccountBalanceUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+  </Function>
+  <Function Name="AccountBegingBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Debit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="AccountDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AccountInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Limit" Type="float" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountTypeID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AccountSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountTypeID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AccountSelectDC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="AccountSelectWithSub" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountTypeID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AccountUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Limit" Type="float" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountTypeID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AirlineDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AirlineInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="SabreCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="IATACode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AirlineSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="SabreCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="IATACode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AirlineUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="SabreCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="IATACode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BranchDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="BranchInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telephone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BranchSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="BranchUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telephone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CalculateCreditForAccountOnPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="CalculateDebitForAccountOnPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="CalculateSaleCommision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="Fare" Type="float" Mode="In" />
+    <Parameter Name="Commision" Type="float" Mode="In" />
+  </Function>
+  <Function Name="CalculateTotalSaleCommisionPerAirline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DashboardGetProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="DashboardGetSalesCounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="DashboardGetSalesStatistics" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="DashboardGetStaffAchievements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="JournalDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="JournalInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="JournalTypeID" Type="int" Mode="In" />
+    <Parameter Name="SalesID" Type="int" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="JournalDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementAndHistoryDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementHistoryInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="JournalMovementID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="ApprovalStatusID" Type="int" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementHistorySelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="Dateto" Type="datetime" Mode="In" />
+    <Parameter Name="JournalNumber" Type="int" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementHistoryUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="ApprovalStatusID" Type="int" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="RejectionReason" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="JournalMovementID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="Dateto" Type="datetime" Mode="In" />
+    <Parameter Name="JournalNumber" Type="int" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="JournalMovementUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="MovementDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Debit" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="JournalID" Type="int" Mode="In" />
+    <Parameter Name="JournalMovementID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="JournalSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="JournalNumber" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="Dateto" Type="datetime" Mode="In" />
+    <Parameter Name="JournalTypeID" Type="int" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="SalesID" Type="int" Mode="In" />
+    <Parameter Name="JournalDate" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="ApprovalStatusID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="JournalUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="JournalDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LogInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Details" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Action" Type="int" Mode="In" />
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="Type" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LogSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="Action" Type="int" Mode="In" />
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="Type" Type="int" Mode="In" />
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="LookupDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LookupInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Note" Type="nvarchar" Mode="In" />
+    <Parameter Name="LookupOrder" Type="int" Mode="In" />
+    <Parameter Name="LookupTypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LookupSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Note" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="LookupOrder" Type="int" Mode="In" />
+    <Parameter Name="LookupTypeID" Type="int" Mode="In" />
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LookupTypeDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LookupTypeInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="LookupTypeSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="LookupTypeUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="LookupUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Note" Type="nvarchar" Mode="In" />
+    <Parameter Name="LookupOrder" Type="int" Mode="In" />
+    <Parameter Name="LookupTypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MappedAccountSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="Credit" Type="bit" Mode="In" />
+    <Parameter Name="Debit" Type="bit" Mode="In" />
+    <Parameter Name="Cost" Type="bit" Mode="In" />
+    <Parameter Name="Sales" Type="bit" Mode="In" />
+    <Parameter Name="IsRefund" Type="bit" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NotificationInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NotificationNotSeenCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="NotificationSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+    <Parameter Name="IsSeen" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="NotificationUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RelatedID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="OutStandingInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OsNumber" Type="int" Mode="In" />
+    <Parameter Name="Amount" Type="float" Mode="In" />
+    <Parameter Name="StatusID" Type="int" Mode="In" />
+    <Parameter Name="JournalMovementID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="OutStandingSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="OutStandingSelectMaxOsNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="OutStandingSelectPartial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JournalMovementID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RptJournalsSendEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RptSalesPerPNRReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForAirLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="StaffID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForDailySales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="Vendor" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForExpensesOrIncome" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="ExpensesORIncome" Type="char" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="SubAccountID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForStaffTotalSalesReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RptSalesSelectForTotalAirLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="RptTrialBalanceReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SalesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesGroupDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesGroupInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesGroupSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesHistoryDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesHistoryInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CardNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="Destination" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fare" Type="float" Mode="In" />
+    <Parameter Name="Tax" Type="float" Mode="In" />
+    <Parameter Name="TotalCost" Type="float" Mode="In" />
+    <Parameter Name="SalesAmount" Type="float" Mode="In" />
+    <Parameter Name="Profit" Type="float" Mode="In" />
+    <Parameter Name="Cash" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Visa" Type="float" Mode="In" />
+    <Parameter Name="Advance" Type="float" Mode="In" />
+    <Parameter Name="Card" Type="float" Mode="In" />
+    <Parameter Name="Complementary" Type="float" Mode="In" />
+    <Parameter Name="Commision" Type="float" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumberPNR" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountantStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="SubAccountID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="RecievableMainAccountID" Type="int" Mode="In" />
+    <Parameter Name="CreditAccountID" Type="int" Mode="In" />
+    <Parameter Name="HistoryCreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="BankAccountID" Type="int" Mode="In" />
+    <Parameter Name="RefRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RefDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SalesHistorySelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="HistoryCreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="ApproveStatusID" Type="int" Mode="In" />
+    <Parameter Name="TransferDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SalesHistoryUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CardNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="Destination" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fare" Type="float" Mode="In" />
+    <Parameter Name="Tax" Type="float" Mode="In" />
+    <Parameter Name="TotalCost" Type="float" Mode="In" />
+    <Parameter Name="SalesAmount" Type="float" Mode="In" />
+    <Parameter Name="Profit" Type="float" Mode="In" />
+    <Parameter Name="Cash" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Visa" Type="float" Mode="In" />
+    <Parameter Name="Advance" Type="float" Mode="In" />
+    <Parameter Name="Card" Type="float" Mode="In" />
+    <Parameter Name="Complementary" Type="float" Mode="In" />
+    <Parameter Name="Commision" Type="float" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumberPNR" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountantStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="SubAccountID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="RejectionReason" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApproveStatusID" Type="int" Mode="In" />
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="RecievableMainAccountID" Type="int" Mode="In" />
+    <Parameter Name="CreditAccountID" Type="int" Mode="In" />
+    <Parameter Name="BankAccountID" Type="int" Mode="In" />
+    <Parameter Name="RefAmountToCustomer" Type="float" Mode="In" />
+    <Parameter Name="RefRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RefDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SalesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CardNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="Destination" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fare" Type="float" Mode="In" />
+    <Parameter Name="Tax" Type="float" Mode="In" />
+    <Parameter Name="TotalCost" Type="float" Mode="In" />
+    <Parameter Name="SalesAmount" Type="float" Mode="In" />
+    <Parameter Name="Profit" Type="float" Mode="In" />
+    <Parameter Name="Cash" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Visa" Type="float" Mode="In" />
+    <Parameter Name="Advance" Type="float" Mode="In" />
+    <Parameter Name="Card" Type="float" Mode="In" />
+    <Parameter Name="Complementary" Type="float" Mode="In" />
+    <Parameter Name="Commision" Type="float" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceNumberPNR" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountantStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="SubAccountID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="RecievableMainAccountID" Type="int" Mode="In" />
+    <Parameter Name="CreditAccountID" Type="int" Mode="In" />
+    <Parameter Name="BankAccountID" Type="int" Mode="In" />
+    <Parameter Name="RefPaid" Type="bit" Mode="In" />
+    <Parameter Name="RefAmountFromProvider" Type="float" Mode="In" />
+    <Parameter Name="RefRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RefDescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SalesMappingAccountPaymentMethodSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesMappingAccountSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+    <Parameter Name="DateTo" Type="datetime" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="RefPaid" Type="bit" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="NotSalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumberPNR" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SalesSelectMaxInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SalesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="TicketNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="CardNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaxName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="Destination" Type="nvarchar" Mode="In" />
+    <Parameter Name="PNR" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fare" Type="float" Mode="In" />
+    <Parameter Name="Tax" Type="float" Mode="In" />
+    <Parameter Name="TotalCost" Type="float" Mode="In" />
+    <Parameter Name="SalesAmount" Type="float" Mode="In" />
+    <Parameter Name="Profit" Type="float" Mode="In" />
+    <Parameter Name="Cash" Type="float" Mode="In" />
+    <Parameter Name="Credit" Type="float" Mode="In" />
+    <Parameter Name="Visa" Type="float" Mode="In" />
+    <Parameter Name="Advance" Type="float" Mode="In" />
+    <Parameter Name="Card" Type="float" Mode="In" />
+    <Parameter Name="Complementary" Type="float" Mode="In" />
+    <Parameter Name="Commision" Type="float" Mode="In" />
+    <Parameter Name="DKNumber" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceNumber" Type="int" Mode="In" />
+    <Parameter Name="InvoiceNumberPNR" Type="int" Mode="In" />
+    <Parameter Name="SalesTypeID" Type="int" Mode="In" />
+    <Parameter Name="PaymentMethodID" Type="int" Mode="In" />
+    <Parameter Name="AirlineID" Type="int" Mode="In" />
+    <Parameter Name="CreatedStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountantStaffID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="SubAccountID" Type="int" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="RefAmountFromProvider" Type="float" Mode="In" />
+    <Parameter Name="SalesStatusID" Type="int" Mode="In" />
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="RefPaid" Type="bit" Mode="In" />
+    <Parameter Name="RecievableMainAccountID" Type="int" Mode="In" />
+    <Parameter Name="CreditAccountID" Type="int" Mode="In" />
+    <Parameter Name="BankAccountID" Type="int" Mode="In" />
+    <Parameter Name="RefAmountToCustomer" Type="float" Mode="In" />
+    <Parameter Name="RefRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RefDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="StaffDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StaffInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserPages" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserPermissions" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="StaffSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDeleted" Type="bit" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StaffUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="BranchID" Type="int" Mode="In" />
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserPages" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserPermissions" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="TotalAdvance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="CentralDepKeyStageModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Airline" EntityType="Self.Airline" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JournalMovement" EntityType="Self.JournalMovement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JournalMovementHistory" EntityType="Self.JournalMovementHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lookup" EntityType="Self.Lookup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupType" EntityType="Self.LookupType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutStanding" EntityType="Self.OutStanding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesGroup" EntityType="Self.SalesGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesHistory" EntityType="Self.SalesHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesMappingAccount" EntityType="Self.SalesMappingAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesMappingAccountPaymentMethod" EntityType="Self.SalesMappingAccountPaymentMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Account1" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Lookup" Association="Self.FK_Account_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Staff" Association="Self.FK_Account_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Branch" Association="Self.FK_Journal_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Lookup" Association="Self.FK_Journal_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Lookup1" Association="Self.FK_Journal_Lookup1">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Sales" Association="Self.FK_Journal_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Staff" Association="Self.FK_Journal_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovement_Account1" Association="Self.FK_JournalMovement_Account1">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="JournalMovement" EntitySet="JournalMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovement_Journal" Association="Self.FK_JournalMovement_Journal">
+      <End Role="Journal" EntitySet="Journal" />
+      <End Role="JournalMovement" EntitySet="JournalMovement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Account" Association="Self.FK_JournalMovementHistory_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Journal" Association="Self.FK_JournalMovementHistory_Journal">
+      <End Role="Journal" EntitySet="Journal" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_JournalMovement" Association="Self.FK_JournalMovementHistory_JournalMovement">
+      <End Role="JournalMovement" EntitySet="JournalMovement" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Lookup" Association="Self.FK_JournalMovementHistory_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
+      <End Role="LookupType" EntitySet="LookupType" />
+      <End Role="Lookup" EntitySet="Lookup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Account" Association="Self.FK_Sales_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Account1" Association="Self.FK_Sales_Account1">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Airline" Association="Self.FK_Sales_Airline">
+      <End Role="Airline" EntitySet="Airline" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Branch" Association="Self.FK_Sales_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup" Association="Self.FK_Sales_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup1" Association="Self.FK_Sales_Lookup1">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup2" Association="Self.FK_Sales_Lookup2">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Sales" Association="Self.FK_Sales_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="Sales1" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Staff" Association="Self.FK_Sales_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Staff1" Association="Self.FK_Sales_Staff1">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Account" Association="Self.FK_SalesHistory_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Account1" Association="Self.FK_SalesHistory_Account1">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Airline" Association="Self.FK_SalesHistory_Airline">
+      <End Role="Airline" EntitySet="Airline" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Branch" Association="Self.FK_SalesHistory_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup" Association="Self.FK_SalesHistory_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup1" Association="Self.FK_SalesHistory_Lookup1">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup2" Association="Self.FK_SalesHistory_Lookup2">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup3" Association="Self.FK_SalesHistory_Lookup3">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Sales" Association="Self.FK_SalesHistory_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_SalesHistory" Association="Self.FK_SalesHistory_SalesHistory">
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+      <End Role="SalesHistory1" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Staff" Association="Self.FK_SalesHistory_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Staff1" Association="Self.FK_SalesHistory_Staff1">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="SalesHistory" EntitySet="SalesHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMappingAccount_Account" Association="Self.FK_SalesMappingAccount_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="SalesMappingAccount" EntitySet="SalesMappingAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMappingAccount_Lookup" Association="Self.FK_SalesMappingAccount_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="SalesMappingAccount" EntitySet="SalesMappingAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Branch" Association="Self.FK_Staff_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Lookup" Association="Self.FK_Staff_Lookup">
+      <End Role="Lookup" EntitySet="Lookup" />
+      <End Role="Staff" EntitySet="Staff" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

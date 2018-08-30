@@ -1,0 +1,1004 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CentralDepKeyStageModelStoreContainer" CdmEntityContainer="CentralDepKeyStageEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Outstanding" ColumnName="Outstanding" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Airlines">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Airline">
+        <MappingFragment StoreEntitySet="Airline">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="SabreCode" ColumnName="SabreCode" />
+          <ScalarProperty Name="IATACode" ColumnName="IATACode" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journals">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Journal">
+        <MappingFragment StoreEntitySet="Journal">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="JournalNumber" ColumnName="JournalNumber" />
+          <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+          <ScalarProperty Name="JournalTypeID" ColumnName="JournalTypeID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JournalMovements">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.JournalMovement">
+        <MappingFragment StoreEntitySet="JournalMovement">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="MovementDescription" ColumnName="MovementDescription" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JournalMovementHistories">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.JournalMovementHistory">
+        <MappingFragment StoreEntitySet="JournalMovementHistory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="MovementDescription" ColumnName="MovementDescription" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="JournalMovementID" ColumnName="JournalMovementID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lookups">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Lookup">
+        <MappingFragment StoreEntitySet="Lookup">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="LookupOrder" ColumnName="LookupOrder" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="LookupTypeID" ColumnName="LookupTypeID" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LookupTypes">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.LookupType">
+        <MappingFragment StoreEntitySet="LookupType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsSeen" ColumnName="IsSeen" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OutStandings">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.OutStanding">
+        <MappingFragment StoreEntitySet="OutStanding">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OsNumber" ColumnName="OsNumber" />
+          <ScalarProperty Name="OsDate" ColumnName="OsDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="JournalMovementID" ColumnName="JournalMovementID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Sale">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="RefAmountFromProvider" ColumnName="RefAmountFromProvider" />
+          <ScalarProperty Name="RefAmountToCustomer" ColumnName="RefAmountToCustomer" />
+          <ScalarProperty Name="RefPaid" ColumnName="RefPaid" />
+          <ScalarProperty Name="RefRemarks" ColumnName="RefRemarks" />
+          <ScalarProperty Name="RefDescription" ColumnName="RefDescription" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountantStaffID" ColumnName="AccountantStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="RecievableMainAccountID" ColumnName="RecievableMainAccountID" />
+          <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesGroups">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.SalesGroup">
+        <MappingFragment StoreEntitySet="SalesGroup">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesHistories">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.SalesHistory">
+        <MappingFragment StoreEntitySet="SalesHistory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="RefRemarks" ColumnName="RefRemarks" />
+          <ScalarProperty Name="RefDescription" ColumnName="RefDescription" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountantStaffID" ColumnName="AccountantStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="ApproveStatusID" ColumnName="ApproveStatusID" />
+          <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="HistoryCreatedStaffID" ColumnName="HistoryCreatedStaffID" />
+          <ScalarProperty Name="RecievableMainAccountID" ColumnName="RecievableMainAccountID" />
+          <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesMappingAccounts">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.SalesMappingAccount">
+        <MappingFragment StoreEntitySet="SalesMappingAccount">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DebitCredit" ColumnName="DebitCredit" />
+          <ScalarProperty Name="SalesCost" ColumnName="SalesCost" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesMappingAccountPaymentMethods">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.SalesMappingAccountPaymentMethod">
+        <MappingFragment StoreEntitySet="SalesMappingAccountPaymentMethod">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="CentralDepKeyStageModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+          <ScalarProperty Name="UserPages" ColumnName="UserPages" />
+          <ScalarProperty Name="UserPermissions" ColumnName="UserPermissions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="CentralDepKeyStageModel.Store.AccountBegingBalance" FunctionImportName="AccountBegingBalance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.AccountBegingBalance_Result">
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AccountBalanceUpdate" FunctionName="CentralDepKeyStageModel.Store.AccountBalanceUpdate" />
+    <FunctionImportMapping FunctionImportName="AccountDelete" FunctionName="CentralDepKeyStageModel.Store.AccountDelete" />
+    <FunctionImportMapping FunctionImportName="AccountInsert" FunctionName="CentralDepKeyStageModel.Store.AccountInsert" />
+    <FunctionImportMapping FunctionImportName="AccountSelect" FunctionName="CentralDepKeyStageModel.Store.AccountSelect" />
+    <FunctionImportMapping FunctionImportName="AccountSelectDC" FunctionName="CentralDepKeyStageModel.Store.AccountSelectDC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.AccountSelectDC_Result">
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AccountSelectWithSub" FunctionName="CentralDepKeyStageModel.Store.AccountSelectWithSub">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.AccountSelectWithSub_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AccountUpdate" FunctionName="CentralDepKeyStageModel.Store.AccountUpdate" />
+    <FunctionImportMapping FunctionImportName="AirlineDelete" FunctionName="CentralDepKeyStageModel.Store.AirlineDelete" />
+    <FunctionImportMapping FunctionImportName="AirlineInsert" FunctionName="CentralDepKeyStageModel.Store.AirlineInsert" />
+    <FunctionImportMapping FunctionImportName="AirlineSelect" FunctionName="CentralDepKeyStageModel.Store.AirlineSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.AirlineSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SabreCode" ColumnName="SabreCode" />
+          <ScalarProperty Name="IATACode" ColumnName="IATACode" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AirlineUpdate" FunctionName="CentralDepKeyStageModel.Store.AirlineUpdate" />
+    <FunctionImportMapping FunctionImportName="BranchDelete" FunctionName="CentralDepKeyStageModel.Store.BranchDelete" />
+    <FunctionImportMapping FunctionImportName="BranchInsert" FunctionName="CentralDepKeyStageModel.Store.BranchInsert" />
+    <FunctionImportMapping FunctionImportName="BranchSelect" FunctionName="CentralDepKeyStageModel.Store.BranchSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.BranchSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BranchUpdate" FunctionName="CentralDepKeyStageModel.Store.BranchUpdate" />
+    <FunctionImportMapping FunctionImportName="DashboardGetProfit" FunctionName="CentralDepKeyStageModel.Store.DashboardGetProfit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.DashboardGetProfit_Result">
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="TAX" ColumnName="TAX" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DashboardGetSalesCounts" FunctionName="CentralDepKeyStageModel.Store.DashboardGetSalesCounts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.DashboardGetSalesCounts_Result">
+          <ScalarProperty Name="OnlineSales" ColumnName="OnlineSales" />
+          <ScalarProperty Name="VoidedSales" ColumnName="VoidedSales" />
+          <ScalarProperty Name="RefundedSales" ColumnName="RefundedSales" />
+          <ScalarProperty Name="SalesWaitingUpdate" ColumnName="SalesWaitingUpdate" />
+          <ScalarProperty Name="SalesWaitingVoid" ColumnName="SalesWaitingVoid" />
+          <ScalarProperty Name="SalesWaitingDelete" ColumnName="SalesWaitingDelete" />
+          <ScalarProperty Name="UpdatedSalesThisMonth" ColumnName="UpdatedSalesThisMonth" />
+          <ScalarProperty Name="VoidedSalesThisMonth" ColumnName="VoidedSalesThisMonth" />
+          <ScalarProperty Name="DeleteedSalesThisMonth" ColumnName="DeleteedSalesThisMonth" />
+          <ScalarProperty Name="VoidFlag" ColumnName="VoidFlag" />
+          <ScalarProperty Name="VoidPercentage" ColumnName="VoidPercentage" />
+          <ScalarProperty Name="RefundFlag" ColumnName="RefundFlag" />
+          <ScalarProperty Name="RefundPercentage" ColumnName="RefundPercentage" />
+          <ScalarProperty Name="TransferSalesToday" ColumnName="TransferSalesToday" />
+          <ScalarProperty Name="Completed" ColumnName="Completed" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DashboardGetSalesStatistics" FunctionName="CentralDepKeyStageModel.Store.DashboardGetSalesStatistics">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.DashboardGetSalesStatistics_Result">
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DashboardGetStaffAchievements" FunctionName="CentralDepKeyStageModel.Store.DashboardGetStaffAchievements">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.DashboardGetStaffAchievements_Result">
+          <ScalarProperty Name="Progress" ColumnName="Progress" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="StaffCount" ColumnName="StaffCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JournalDelete" FunctionName="CentralDepKeyStageModel.Store.JournalDelete" />
+    <FunctionImportMapping FunctionImportName="JournalInsert" FunctionName="CentralDepKeyStageModel.Store.JournalInsert" />
+    <FunctionImportMapping FunctionImportName="JournalMovementAndHistoryDelete" FunctionName="CentralDepKeyStageModel.Store.JournalMovementAndHistoryDelete" />
+    <FunctionImportMapping FunctionImportName="JournalMovementDelete" FunctionName="CentralDepKeyStageModel.Store.JournalMovementDelete" />
+    <FunctionImportMapping FunctionImportName="JournalMovementHistoryInsert" FunctionName="CentralDepKeyStageModel.Store.JournalMovementHistoryInsert" />
+    <FunctionImportMapping FunctionImportName="JournalMovementHistorySelect" FunctionName="CentralDepKeyStageModel.Store.JournalMovementHistorySelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.JournalMovementHistorySelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="MovementDescription" ColumnName="MovementDescription" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="JournalNumber" ColumnName="JournalNumber" />
+          <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JournalMovementHistoryUpdate" FunctionName="CentralDepKeyStageModel.Store.JournalMovementHistoryUpdate" />
+    <FunctionImportMapping FunctionImportName="JournalMovementInsert" FunctionName="CentralDepKeyStageModel.Store.JournalMovementInsert" />
+    <FunctionImportMapping FunctionImportName="JournalMovementSelect" FunctionName="CentralDepKeyStageModel.Store.JournalMovementSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.JournalMovementSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="MovementDescription" ColumnName="MovementDescription" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="JournalNumber" ColumnName="JournalNumber" />
+          <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="JournalMovementID" ColumnName="JournalMovementID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JournalMovementUpdate" FunctionName="CentralDepKeyStageModel.Store.JournalMovementUpdate" />
+    <FunctionImportMapping FunctionImportName="JournalSelect" FunctionName="CentralDepKeyStageModel.Store.JournalSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.JournalSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JournalNumber" ColumnName="JournalNumber" />
+          <ScalarProperty Name="JournalTypeID" ColumnName="JournalTypeID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="JournalTypeTitle" ColumnName="JournalTypeTitle" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="MovTypeTitle" ColumnName="MovTypeTitle" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+          <ScalarProperty Name="ApprovalStatusID" ColumnName="ApprovalStatusID" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="JournalUpdate" FunctionName="CentralDepKeyStageModel.Store.JournalUpdate" />
+    <FunctionImportMapping FunctionImportName="LogInsert" FunctionName="CentralDepKeyStageModel.Store.LogInsert" />
+    <FunctionImportMapping FunctionImportName="LogSelect" FunctionName="CentralDepKeyStageModel.Store.LogSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.LogSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="ActionView" ColumnName="ActionView" />
+          <ScalarProperty Name="TypeView" ColumnName="TypeView" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LookupDelete" FunctionName="CentralDepKeyStageModel.Store.LookupDelete" />
+    <FunctionImportMapping FunctionImportName="LookupInsert" FunctionName="CentralDepKeyStageModel.Store.LookupInsert" />
+    <FunctionImportMapping FunctionImportName="LookupSelect" FunctionName="CentralDepKeyStageModel.Store.LookupSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.LookupSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="LookupOrder" ColumnName="LookupOrder" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="LookupTypeID" ColumnName="LookupTypeID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+          <ScalarProperty Name="LookupTypeTitle" ColumnName="LookupTypeTitle" />
+          <ScalarProperty Name="LookupTypeID1" ColumnName="LookupTypeID1" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LookupTypeDelete" FunctionName="CentralDepKeyStageModel.Store.LookupTypeDelete" />
+    <FunctionImportMapping FunctionImportName="LookupTypeInsert" FunctionName="CentralDepKeyStageModel.Store.LookupTypeInsert" />
+    <FunctionImportMapping FunctionImportName="LookupTypeSelect" FunctionName="CentralDepKeyStageModel.Store.LookupTypeSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.LookupTypeSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+          <ScalarProperty Name="Lookups" ColumnName="Lookups" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LookupTypeUpdate" FunctionName="CentralDepKeyStageModel.Store.LookupTypeUpdate" />
+    <FunctionImportMapping FunctionImportName="LookupUpdate" FunctionName="CentralDepKeyStageModel.Store.LookupUpdate" />
+    <FunctionImportMapping FunctionImportName="MappedAccountSelect" FunctionName="CentralDepKeyStageModel.Store.MappedAccountSelect" />
+    <FunctionImportMapping FunctionImportName="NotificationInsert" FunctionName="CentralDepKeyStageModel.Store.NotificationInsert" />
+    <FunctionImportMapping FunctionImportName="NotificationNotSeenCount" FunctionName="CentralDepKeyStageModel.Store.NotificationNotSeenCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.NotificationNotSeenCount_Result">
+          <ScalarProperty Name="NotificationsCount" ColumnName="NotificationsCount" />
+          <ScalarProperty Name="NotificationsSalesCount" ColumnName="NotificationsSalesCount" />
+          <ScalarProperty Name="NotificationsJournalCount" ColumnName="NotificationsJournalCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NotificationSelect" FunctionName="CentralDepKeyStageModel.Store.NotificationSelect" />
+    <FunctionImportMapping FunctionImportName="NotificationUpdate" FunctionName="CentralDepKeyStageModel.Store.NotificationUpdate" />
+    <FunctionImportMapping FunctionImportName="OutStandingInsert" FunctionName="CentralDepKeyStageModel.Store.OutStandingInsert" />
+    <FunctionImportMapping FunctionImportName="OutStandingSelect" FunctionName="CentralDepKeyStageModel.Store.OutStandingSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.OutStandingSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="MovementDescription" ColumnName="MovementDescription" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="JournalMovementID" ColumnName="JournalMovementID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="OutStandingSelectMaxOsNumber" FunctionName="CentralDepKeyStageModel.Store.OutStandingSelectMaxOsNumber" />
+    <FunctionImportMapping FunctionImportName="OutStandingSelectPartial" FunctionName="CentralDepKeyStageModel.Store.OutStandingSelectPartial">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.OutStandingSelectPartial_Result">
+          <ScalarProperty Name="OsNumber" ColumnName="OsNumber" />
+          <ScalarProperty Name="OsDate" ColumnName="OsDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptJournalsSendEmail" FunctionName="CentralDepKeyStageModel.Store.RptJournalsSendEmail" />
+    <FunctionImportMapping FunctionImportName="RptSalesPerPNRReport" FunctionName="CentralDepKeyStageModel.Store.RptSalesPerPNRReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesPerPNRReport_Result">
+          <ScalarProperty Name="PNRFare" ColumnName="PNRFare" />
+          <ScalarProperty Name="PNRTax" ColumnName="PNRTax" />
+          <ScalarProperty Name="PNRCost" ColumnName="PNRCost" />
+          <ScalarProperty Name="PNRSalesAmount" ColumnName="PNRSalesAmount" />
+          <ScalarProperty Name="PNRProfit" ColumnName="PNRProfit" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForAirLine" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForAirLine">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForAirLine_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="IsssuedByName" ColumnName="IsssuedByName" />
+          <ScalarProperty Name="CommisionAmount" ColumnName="CommisionAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForDailySales" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForDailySales">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForDailySales_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="TicketNumber1" ColumnName="TicketNumber1" />
+          <ScalarProperty Name="SalesTypeTitle" ColumnName="SalesTypeTitle" />
+          <ScalarProperty Name="PaymentMethodTitle" ColumnName="PaymentMethodTitle" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="AirlineCode" ColumnName="AirlineCode" />
+          <ScalarProperty Name="CreatedName" ColumnName="CreatedName" />
+          <ScalarProperty Name="SalesTypeTitle1" ColumnName="SalesTypeTitle1" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForExpensesOrIncome" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForExpensesOrIncome">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForExpensesOrIncome_Result">
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForProfit" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForProfit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForProfit_Result">
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForSales" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForSales">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForSales_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="TicketNumber1" ColumnName="TicketNumber1" />
+          <ScalarProperty Name="SalesTypeTitle" ColumnName="SalesTypeTitle" />
+          <ScalarProperty Name="PaymentMethodTitle" ColumnName="PaymentMethodTitle" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="AirlineCode" ColumnName="AirlineCode" />
+          <ScalarProperty Name="CreatedName" ColumnName="CreatedName" />
+          <ScalarProperty Name="SalesTypeTitle1" ColumnName="SalesTypeTitle1" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForStaffTotalSalesReport" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForStaffTotalSalesReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForStaffTotalSalesReport_Result">
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="RefundSales" ColumnName="RefundSales" />
+          <ScalarProperty Name="RefundCost" ColumnName="RefundCost" />
+          <ScalarProperty Name="IsssuedByName" ColumnName="IsssuedByName" />
+          <ScalarProperty Name="ProfitWithRefund" ColumnName="ProfitWithRefund" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptSalesSelectForTotalAirLine" FunctionName="CentralDepKeyStageModel.Store.RptSalesSelectForTotalAirLine">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptSalesSelectForTotalAirLine_Result">
+          <ScalarProperty Name="AirlineFare" ColumnName="AirlineFare" />
+          <ScalarProperty Name="AirlineTax" ColumnName="AirlineTax" />
+          <ScalarProperty Name="AirlineCost" ColumnName="AirlineCost" />
+          <ScalarProperty Name="AirlineSalesAmount" ColumnName="AirlineSalesAmount" />
+          <ScalarProperty Name="AirlineProfit" ColumnName="AirlineProfit" />
+          <ScalarProperty Name="AirlineCommision" ColumnName="AirlineCommision" />
+          <ScalarProperty Name="AirLineID" ColumnName="AirLineID" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RptTrialBalanceReport" FunctionName="CentralDepKeyStageModel.Store.RptTrialBalanceReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.RptTrialBalanceReport_Result">
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="BeginningDebit" ColumnName="BeginningDebit" />
+          <ScalarProperty Name="BeginningCredit" ColumnName="BeginningCredit" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesDelete" FunctionName="CentralDepKeyStageModel.Store.SalesDelete" />
+    <FunctionImportMapping FunctionImportName="SalesGroupDelete" FunctionName="CentralDepKeyStageModel.Store.SalesGroupDelete" />
+    <FunctionImportMapping FunctionImportName="SalesGroupInsert" FunctionName="CentralDepKeyStageModel.Store.SalesGroupInsert" />
+    <FunctionImportMapping FunctionImportName="SalesGroupSelect" FunctionName="CentralDepKeyStageModel.Store.SalesGroupSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesGroupSelect_Result">
+          <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+          <ScalarProperty Name="InvoiceNumberGroup" ColumnName="InvoiceNumberGroup" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="RefAmountFromProvider" ColumnName="RefAmountFromProvider" />
+          <ScalarProperty Name="RefAmountToCustomer" ColumnName="RefAmountToCustomer" />
+          <ScalarProperty Name="RefPaid" ColumnName="RefPaid" />
+          <ScalarProperty Name="RefRemarks" ColumnName="RefRemarks" />
+          <ScalarProperty Name="RefDescription" ColumnName="RefDescription" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountantStaffID" ColumnName="AccountantStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="RecievableMainAccountID" ColumnName="RecievableMainAccountID" />
+          <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+          <ScalarProperty Name="SalesTypeTitle" ColumnName="SalesTypeTitle" />
+          <ScalarProperty Name="PaymentMethodTitle" ColumnName="PaymentMethodTitle" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="AirlineCode" ColumnName="AirlineCode" />
+          <ScalarProperty Name="CreatedName" ColumnName="CreatedName" />
+          <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="SubAccountName" ColumnName="SubAccountName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="SalesTypeTitle1" ColumnName="SalesTypeTitle1" />
+          <ScalarProperty Name="SalesStatusTitle" ColumnName="SalesStatusTitle" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesHistoryDelete" FunctionName="CentralDepKeyStageModel.Store.SalesHistoryDelete" />
+    <FunctionImportMapping FunctionImportName="SalesHistoryInsert" FunctionName="CentralDepKeyStageModel.Store.SalesHistoryInsert" />
+    <FunctionImportMapping FunctionImportName="SalesHistorySelect" FunctionName="CentralDepKeyStageModel.Store.SalesHistorySelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesHistorySelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountantStaffID" ColumnName="AccountantStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="RecievableMainAccountID" ColumnName="RecievableMainAccountID" />
+          <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApproveStatusID" ColumnName="ApproveStatusID" />
+          <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+          <ScalarProperty Name="RefRemarks" ColumnName="RefRemarks" />
+          <ScalarProperty Name="RefDescription" ColumnName="RefDescription" />
+          <ScalarProperty Name="SalesTypeTitle" ColumnName="SalesTypeTitle" />
+          <ScalarProperty Name="PaymentMethodTitle" ColumnName="PaymentMethodTitle" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="AirlineCode" ColumnName="AirlineCode" />
+          <ScalarProperty Name="CreatedName" ColumnName="CreatedName" />
+          <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="RecievableMainAccountName" ColumnName="RecievableMainAccountName" />
+          <ScalarProperty Name="CreditAccountName" ColumnName="CreditAccountName" />
+          <ScalarProperty Name="SubAccountName" ColumnName="SubAccountName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="SalesTypeTitle1" ColumnName="SalesTypeTitle1" />
+          <ScalarProperty Name="SalesStatusTitle" ColumnName="SalesStatusTitle" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+          <ScalarProperty Name="HistoryCreatedStaffID" ColumnName="HistoryCreatedStaffID" />
+          <ScalarProperty Name="BranchID1" ColumnName="BranchID1" />
+          <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesHistoryUpdate" FunctionName="CentralDepKeyStageModel.Store.SalesHistoryUpdate" />
+    <FunctionImportMapping FunctionImportName="SalesInsert" FunctionName="CentralDepKeyStageModel.Store.SalesInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesInsert_Result">
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="TicketExist" ColumnName="TicketExist" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesMappingAccountPaymentMethodSelect" FunctionName="CentralDepKeyStageModel.Store.SalesMappingAccountPaymentMethodSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesMappingAccountPaymentMethodSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesMappingAccountSelect" FunctionName="CentralDepKeyStageModel.Store.SalesMappingAccountSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesMappingAccountSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DebitCredit" ColumnName="DebitCredit" />
+          <ScalarProperty Name="SalesCost" ColumnName="SalesCost" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesSelect" FunctionName="CentralDepKeyStageModel.Store.SalesSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.SalesSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaxName" ColumnName="PaxName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PNR" ColumnName="PNR" />
+          <ScalarProperty Name="DeletionDate" ColumnName="DeletionDate" />
+          <ScalarProperty Name="Fare" ColumnName="Fare" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+          <ScalarProperty Name="Profit" ColumnName="Profit" />
+          <ScalarProperty Name="Cash" ColumnName="Cash" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Visa" ColumnName="Visa" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Card" ColumnName="Card" />
+          <ScalarProperty Name="Complementary" ColumnName="Complementary" />
+          <ScalarProperty Name="Commision" ColumnName="Commision" />
+          <ScalarProperty Name="DKNumber" ColumnName="DKNumber" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceNumberPNR" ColumnName="InvoiceNumberPNR" />
+          <ScalarProperty Name="SalesTypeID" ColumnName="SalesTypeID" />
+          <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+          <ScalarProperty Name="AirlineID" ColumnName="AirlineID" />
+          <ScalarProperty Name="CreatedStaffID" ColumnName="CreatedStaffID" />
+          <ScalarProperty Name="AccountantStaffID" ColumnName="AccountantStaffID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="SubAccountID" ColumnName="SubAccountID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="SalesStatusID" ColumnName="SalesStatusID" />
+          <ScalarProperty Name="TicketNumber" ColumnName="TicketNumber" />
+          <ScalarProperty Name="RecievableMainAccountID" ColumnName="RecievableMainAccountID" />
+          <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="RefAmountFromProvider" ColumnName="RefAmountFromProvider" />
+          <ScalarProperty Name="RefAmountToCustomer" ColumnName="RefAmountToCustomer" />
+          <ScalarProperty Name="RefPaid" ColumnName="RefPaid" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="RefRemarks" ColumnName="RefRemarks" />
+          <ScalarProperty Name="RefDescription" ColumnName="RefDescription" />
+          <ScalarProperty Name="BranchID1" ColumnName="BranchID1" />
+          <ScalarProperty Name="SalesTypeTitle" ColumnName="SalesTypeTitle" />
+          <ScalarProperty Name="PaymentMethodTitle" ColumnName="PaymentMethodTitle" />
+          <ScalarProperty Name="AirlineName" ColumnName="AirlineName" />
+          <ScalarProperty Name="AirlineCode" ColumnName="AirlineCode" />
+          <ScalarProperty Name="CreatedName" ColumnName="CreatedName" />
+          <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="SubAccountName" ColumnName="SubAccountName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="SalesTypeTitle1" ColumnName="SalesTypeTitle1" />
+          <ScalarProperty Name="SalesStatusTitle" ColumnName="SalesStatusTitle" />
+          <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+          <ScalarProperty Name="SalesHistoryStatus" ColumnName="SalesHistoryStatus" />
+          <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+          <ScalarProperty Name="OriginalSalesAmount" ColumnName="OriginalSalesAmount" />
+          <ScalarProperty Name="SalesHistoryStatusID" ColumnName="SalesHistoryStatusID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SalesSelectMaxInvoice" FunctionName="CentralDepKeyStageModel.Store.SalesSelectMaxInvoice" />
+    <FunctionImportMapping FunctionImportName="SalesUpdate" FunctionName="CentralDepKeyStageModel.Store.SalesUpdate" />
+    <FunctionImportMapping FunctionImportName="StaffDelete" FunctionName="CentralDepKeyStageModel.Store.StaffDelete" />
+    <FunctionImportMapping FunctionImportName="StaffInsert" FunctionName="CentralDepKeyStageModel.Store.StaffInsert" />
+    <FunctionImportMapping FunctionImportName="StaffSelect" FunctionName="CentralDepKeyStageModel.Store.StaffSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CentralDepKeyStageModel.StaffSelect_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserPages" ColumnName="UserPages" />
+          <ScalarProperty Name="UserPermissions" ColumnName="UserPermissions" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="StaffUpdate" FunctionName="CentralDepKeyStageModel.Store.StaffUpdate" />
+    <FunctionImportMapping FunctionImportName="TotalAdvance" FunctionName="CentralDepKeyStageModel.Store.TotalAdvance" />
+  </EntityContainerMapping>
+</Mapping>

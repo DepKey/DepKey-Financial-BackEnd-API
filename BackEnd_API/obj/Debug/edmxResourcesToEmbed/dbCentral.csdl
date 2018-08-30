@@ -1,0 +1,2205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CentralDepKeyStageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="AccountBegingBalance_Result">
+    <Property Name="Debit" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Credit" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="AccountNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="Credit" Type="Double" />
+    <Property Name="Limit" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="StaffID" Type="Int32" />
+    <Property Name="AccountTypeID" Type="Int32" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Outstanding" Type="Boolean" />
+    <Property Name="BranchID" Type="Int32" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK_Account_Account" FromRole="Account" ToRole="Account1" />
+    <NavigationProperty Name="Account2" Relationship="Self.FK_Account_Account" FromRole="Account1" ToRole="Account" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_Account_Lookup" FromRole="Account" ToRole="Lookup" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK_Account_Staff" FromRole="Account" ToRole="Staff" />
+    <NavigationProperty Name="JournalMovements" Relationship="Self.FK_JournalMovement_Account1" FromRole="Account" ToRole="JournalMovement" />
+    <NavigationProperty Name="JournalMovementHistories" Relationship="Self.FK_JournalMovementHistory_Account" FromRole="Account" ToRole="JournalMovementHistory" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Account" FromRole="Account" ToRole="Sales" />
+    <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Account1" FromRole="Account" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Account" FromRole="Account" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesHistories1" Relationship="Self.FK_SalesHistory_Account1" FromRole="Account" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesMappingAccounts" Relationship="Self.FK_SalesMappingAccount_Account" FromRole="Account" ToRole="SalesMappingAccount" />
+  </EntityType>
+  <EntityType Name="Airline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="SabreCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IATACode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Airline" FromRole="Airline" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Airline" FromRole="Airline" ToRole="SalesHistory" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="Telephone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Branch" FromRole="Branch" ToRole="Journal" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Branch" FromRole="Branch" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Branch" FromRole="Branch" ToRole="SalesHistory" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Branch" FromRole="Branch" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="JournalNumber" Type="Int32" Nullable="false" />
+    <Property Name="JournalDate" Type="DateTime" Precision="3" />
+    <Property Name="JournalTypeID" Type="Int32" Nullable="false" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="StaffID" Type="Int32" />
+    <Property Name="SalesID" Type="Int32" />
+    <Property Name="SalesStatusID" Type="Int32" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Journal_Branch" FromRole="Journal" ToRole="Branch" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_Journal_Lookup" FromRole="Journal" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup1" Relationship="Self.FK_Journal_Lookup1" FromRole="Journal" ToRole="Lookup" />
+    <NavigationProperty Name="Sale" Relationship="Self.FK_Journal_Sales" FromRole="Journal" ToRole="Sales" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK_Journal_Staff" FromRole="Journal" ToRole="Staff" />
+    <NavigationProperty Name="JournalMovements" Relationship="Self.FK_JournalMovement_Journal" FromRole="Journal" ToRole="JournalMovement" />
+    <NavigationProperty Name="JournalMovementHistories" Relationship="Self.FK_JournalMovementHistory_Journal" FromRole="Journal" ToRole="JournalMovementHistory" />
+  </EntityType>
+  <EntityType Name="JournalMovement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="Credit" Type="Double" />
+    <Property Name="MovementDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JournalID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_JournalMovement_Account1" FromRole="JournalMovement" ToRole="Account" />
+    <NavigationProperty Name="Journal" Relationship="Self.FK_JournalMovement_Journal" FromRole="JournalMovement" ToRole="Journal" />
+    <NavigationProperty Name="JournalMovementHistories" Relationship="Self.FK_JournalMovementHistory_JournalMovement" FromRole="JournalMovement" ToRole="JournalMovementHistory" />
+  </EntityType>
+  <EntityType Name="JournalMovementHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="Debit" Type="Double" />
+    <Property Name="Credit" Type="Double" />
+    <Property Name="MovementDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RejectionReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JournalID" Type="Int32" Nullable="false" />
+    <Property Name="JournalMovementID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="ApprovalStatusID" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_JournalMovementHistory_Account" FromRole="JournalMovementHistory" ToRole="Account" />
+    <NavigationProperty Name="Journal" Relationship="Self.FK_JournalMovementHistory_Journal" FromRole="JournalMovementHistory" ToRole="Journal" />
+    <NavigationProperty Name="JournalMovement" Relationship="Self.FK_JournalMovementHistory_JournalMovement" FromRole="JournalMovementHistory" ToRole="JournalMovement" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_JournalMovementHistory_Lookup" FromRole="JournalMovementHistory" ToRole="Lookup" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="Int32" />
+    <Property Name="RelatedID" Type="Int32" />
+    <Property Name="StaffID" Type="Int32" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="Type" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Lookup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="LookupOrder" Type="Int32" />
+    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LookupTypeID" Type="Int32" Nullable="false" />
+    <Property Name="RelatedID" Type="Int32" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Lookup" FromRole="Lookup" ToRole="Account" />
+    <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Lookup" FromRole="Lookup" ToRole="Journal" />
+    <NavigationProperty Name="Journals1" Relationship="Self.FK_Journal_Lookup1" FromRole="Lookup" ToRole="Journal" />
+    <NavigationProperty Name="JournalMovementHistories" Relationship="Self.FK_JournalMovementHistory_Lookup" FromRole="Lookup" ToRole="JournalMovementHistory" />
+    <NavigationProperty Name="LookupType" Relationship="Self.FK_Lookup_LookupType" FromRole="Lookup" ToRole="LookupType" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Lookup" FromRole="Lookup" ToRole="Sales" />
+    <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Lookup1" FromRole="Lookup" ToRole="Sales" />
+    <NavigationProperty Name="Sales2" Relationship="Self.FK_Sales_Lookup2" FromRole="Lookup" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Lookup" FromRole="Lookup" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesHistories1" Relationship="Self.FK_SalesHistory_Lookup1" FromRole="Lookup" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesHistories2" Relationship="Self.FK_SalesHistory_Lookup2" FromRole="Lookup" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesHistories3" Relationship="Self.FK_SalesHistory_Lookup3" FromRole="Lookup" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesMappingAccounts" Relationship="Self.FK_SalesMappingAccount_Lookup" FromRole="Lookup" ToRole="SalesMappingAccount" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Lookup" FromRole="Lookup" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="LookupType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Lookups" Relationship="Self.FK_Lookup_LookupType" FromRole="LookupType" ToRole="Lookup" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsSeen" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="RelatedID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OutStanding">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OsNumber" Type="Int32" Nullable="false" />
+    <Property Name="OsDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="JournalMovementID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="CardNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaxName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PNR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+    <Property Name="Fare" Type="Double" />
+    <Property Name="Tax" Type="Double" />
+    <Property Name="TotalCost" Type="Double" />
+    <Property Name="SalesAmount" Type="Double" />
+    <Property Name="Profit" Type="Double" />
+    <Property Name="Cash" Type="Double" />
+    <Property Name="Credit" Type="Double" />
+    <Property Name="Visa" Type="Double" />
+    <Property Name="Advance" Type="Double" />
+    <Property Name="Card" Type="Double" />
+    <Property Name="Complementary" Type="Double" />
+    <Property Name="Commision" Type="Double" />
+    <Property Name="DKNumber" Type="Int64" />
+    <Property Name="InvoiceNumber" Type="Int32" />
+    <Property Name="InvoiceNumberPNR" Type="Int32" />
+    <Property Name="TicketNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RefAmountFromProvider" Type="Double" />
+    <Property Name="RefAmountToCustomer" Type="Double" />
+    <Property Name="RefPaid" Type="Boolean" />
+    <Property Name="RefRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SalesTypeID" Type="Int32" />
+    <Property Name="PaymentMethodID" Type="Int32" />
+    <Property Name="AirlineID" Type="Int32" />
+    <Property Name="CreatedStaffID" Type="Int32" />
+    <Property Name="AccountantStaffID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="SalesStatusID" Type="Int32" />
+    <Property Name="SubAccountID" Type="Int32" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="RecievableMainAccountID" Type="Int32" />
+    <Property Name="CreditAccountID" Type="Int32" />
+    <Property Name="BankAccountID" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Sales_Account" FromRole="Sales" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK_Sales_Account1" FromRole="Sales" ToRole="Account" />
+    <NavigationProperty Name="Airline" Relationship="Self.FK_Sales_Airline" FromRole="Sales" ToRole="Airline" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Sales_Branch" FromRole="Sales" ToRole="Branch" />
+    <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Sales" FromRole="Sales" ToRole="Journal" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_Sales_Lookup" FromRole="Sales" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup1" Relationship="Self.FK_Sales_Lookup1" FromRole="Sales" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup2" Relationship="Self.FK_Sales_Lookup2" FromRole="Sales" ToRole="Lookup" />
+    <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Sales" FromRole="Sales" ToRole="Sales1" />
+    <NavigationProperty Name="Sale1" Relationship="Self.FK_Sales_Sales" FromRole="Sales1" ToRole="Sales" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK_Sales_Staff" FromRole="Sales" ToRole="Staff" />
+    <NavigationProperty Name="Staff1" Relationship="Self.FK_Sales_Staff1" FromRole="Sales" ToRole="Staff" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Sales" FromRole="Sales" ToRole="SalesHistory" />
+  </EntityType>
+  <EntityType Name="SalesGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="TicketNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CardNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaxName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Destination" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PNR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="RejectionReason" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DeletionDate" Type="DateTime" Precision="3" />
+    <Property Name="Fare" Type="Double" />
+    <Property Name="Tax" Type="Double" />
+    <Property Name="TotalCost" Type="Double" />
+    <Property Name="SalesAmount" Type="Double" />
+    <Property Name="Profit" Type="Double" />
+    <Property Name="Cash" Type="Double" />
+    <Property Name="Credit" Type="Double" />
+    <Property Name="Visa" Type="Double" />
+    <Property Name="Advance" Type="Double" />
+    <Property Name="Card" Type="Double" />
+    <Property Name="Complementary" Type="Double" />
+    <Property Name="Commision" Type="Double" />
+    <Property Name="DKNumber" Type="Int64" />
+    <Property Name="InvoiceNumber" Type="Int32" />
+    <Property Name="RefRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SalesTypeID" Type="Int32" />
+    <Property Name="PaymentMethodID" Type="Int32" />
+    <Property Name="AirlineID" Type="Int32" />
+    <Property Name="CreatedStaffID" Type="Int32" />
+    <Property Name="AccountantStaffID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="SalesStatusID" Type="Int32" />
+    <Property Name="ApproveStatusID" Type="Int32" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="SubAccountID" Type="Int32" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="HistoryCreatedStaffID" Type="Int32" />
+    <Property Name="RecievableMainAccountID" Type="Int32" />
+    <Property Name="CreditAccountID" Type="Int32" />
+    <Property Name="BankAccountID" Type="Int32" />
+    <Property Name="InvoiceNumberPNR" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_SalesHistory_Account" FromRole="SalesHistory" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK_SalesHistory_Account1" FromRole="SalesHistory" ToRole="Account" />
+    <NavigationProperty Name="Airline" Relationship="Self.FK_SalesHistory_Airline" FromRole="SalesHistory" ToRole="Airline" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_SalesHistory_Branch" FromRole="SalesHistory" ToRole="Branch" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_SalesHistory_Lookup" FromRole="SalesHistory" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup1" Relationship="Self.FK_SalesHistory_Lookup1" FromRole="SalesHistory" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup2" Relationship="Self.FK_SalesHistory_Lookup2" FromRole="SalesHistory" ToRole="Lookup" />
+    <NavigationProperty Name="Lookup3" Relationship="Self.FK_SalesHistory_Lookup3" FromRole="SalesHistory" ToRole="Lookup" />
+    <NavigationProperty Name="Sale" Relationship="Self.FK_SalesHistory_Sales" FromRole="SalesHistory" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistory1" Relationship="Self.FK_SalesHistory_SalesHistory" FromRole="SalesHistory" ToRole="SalesHistory1" />
+    <NavigationProperty Name="SalesHistory2" Relationship="Self.FK_SalesHistory_SalesHistory" FromRole="SalesHistory1" ToRole="SalesHistory" />
+    <NavigationProperty Name="Staff" Relationship="Self.FK_SalesHistory_Staff" FromRole="SalesHistory" ToRole="Staff" />
+    <NavigationProperty Name="Staff1" Relationship="Self.FK_SalesHistory_Staff1" FromRole="SalesHistory" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="SalesMappingAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DebitCredit" Type="Int32" />
+    <Property Name="SalesCost" Type="Int32" />
+    <Property Name="SalesTypeID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_SalesMappingAccount_Account" FromRole="SalesMappingAccount" ToRole="Account" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_SalesMappingAccount_Lookup" FromRole="SalesMappingAccount" ToRole="Lookup" />
+  </EntityType>
+  <EntityType Name="SalesMappingAccountPaymentMethod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentMethodID" Type="Int32" />
+    <Property Name="AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="Username" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Limit" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UserPages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserPermissions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Staff" FromRole="Staff" ToRole="Account" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Staff_Branch" FromRole="Staff" ToRole="Branch" />
+    <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Staff" FromRole="Staff" ToRole="Journal" />
+    <NavigationProperty Name="Lookup" Relationship="Self.FK_Staff_Lookup" FromRole="Staff" ToRole="Lookup" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Staff" FromRole="Staff" ToRole="Sales" />
+    <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Staff1" FromRole="Staff" ToRole="Sales" />
+    <NavigationProperty Name="SalesHistories" Relationship="Self.FK_SalesHistory_Staff" FromRole="Staff" ToRole="SalesHistory" />
+    <NavigationProperty Name="SalesHistories1" Relationship="Self.FK_SalesHistory_Staff1" FromRole="Staff" ToRole="SalesHistory" />
+  </EntityType>
+  <Association Name="FK_Account_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Account1" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovement_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovement">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMappingAccount_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="SalesMappingAccount" Type="Self.SalesMappingAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesMappingAccount">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Airline">
+    <End Role="Airline" Type="Self.Airline" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AirlineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Airline">
+    <End Role="Airline" Type="Self.Airline" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airline">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AirlineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="JournalTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Sales">
+    <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="SalesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journal_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovement_Journal">
+    <End Role="Journal" Type="Self.Journal" Multiplicity="1" />
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journal">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovement">
+        <PropertyRef Name="JournalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Journal">
+    <End Role="Journal" Type="Self.Journal" Multiplicity="1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journal">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="JournalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_JournalMovement">
+    <End Role="JournalMovement" Type="Self.JournalMovement" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JournalMovement">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="JournalMovementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalMovementHistory_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="JournalMovementHistory" Type="Self.JournalMovementHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JournalMovementHistory">
+        <PropertyRef Name="ApprovalStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lookup_LookupType">
+    <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lookup">
+        <PropertyRef Name="LookupTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Lookup2">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup1">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup2">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SalesStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Lookup3">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="ApproveStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesMappingAccount_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="SalesMappingAccount" Type="Self.SalesMappingAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesMappingAccount">
+        <PropertyRef Name="SalesTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Lookup">
+    <End Role="Lookup" Type="Self.Lookup" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lookup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Sales">
+    <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
+    <End Role="Sales1" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="CreatedStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Staff1">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Sales" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="AccountantStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Sales">
+    <End Role="Sales" Type="Self.Sale" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_SalesHistory">
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="0..1" />
+    <End Role="SalesHistory1" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesHistory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="CreatedStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesHistory_Staff1">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="SalesHistory" Type="Self.SalesHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesHistory">
+        <PropertyRef Name="AccountantStaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CentralDepKeyStageEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Airlines" EntityType="Self.Airline" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Journals" EntityType="Self.Journal" />
+    <EntitySet Name="JournalMovements" EntityType="Self.JournalMovement" />
+    <EntitySet Name="JournalMovementHistories" EntityType="Self.JournalMovementHistory" />
+    <EntitySet Name="Logs" EntityType="Self.Log" />
+    <EntitySet Name="Lookups" EntityType="Self.Lookup" />
+    <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
+    <EntitySet Name="Notifications" EntityType="Self.Notification" />
+    <EntitySet Name="OutStandings" EntityType="Self.OutStanding" />
+    <EntitySet Name="Sales" EntityType="Self.Sale" />
+    <EntitySet Name="SalesGroups" EntityType="Self.SalesGroup" />
+    <EntitySet Name="SalesHistories" EntityType="Self.SalesHistory" />
+    <EntitySet Name="SalesMappingAccounts" EntityType="Self.SalesMappingAccount" />
+    <EntitySet Name="SalesMappingAccountPaymentMethods" EntityType="Self.SalesMappingAccountPaymentMethod" />
+    <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Account1" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Lookup" Association="Self.FK_Account_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Staff" Association="Self.FK_Account_Staff">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovement_Account1" Association="Self.FK_JournalMovement_Account1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="JournalMovement" EntitySet="JournalMovements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Account" Association="Self.FK_JournalMovementHistory_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Account" Association="Self.FK_Sales_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Account1" Association="Self.FK_Sales_Account1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Account" Association="Self.FK_SalesHistory_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Account1" Association="Self.FK_SalesHistory_Account1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMappingAccount_Account" Association="Self.FK_SalesMappingAccount_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="SalesMappingAccount" EntitySet="SalesMappingAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Airline" Association="Self.FK_Sales_Airline">
+      <End Role="Airline" EntitySet="Airlines" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Airline" Association="Self.FK_SalesHistory_Airline">
+      <End Role="Airline" EntitySet="Airlines" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Branch" Association="Self.FK_Journal_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Branch" Association="Self.FK_Sales_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Branch" Association="Self.FK_SalesHistory_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Branch" Association="Self.FK_Staff_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Lookup" Association="Self.FK_Journal_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Lookup1" Association="Self.FK_Journal_Lookup1">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Sales" Association="Self.FK_Journal_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journal_Staff" Association="Self.FK_Journal_Staff">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Journal" EntitySet="Journals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovement_Journal" Association="Self.FK_JournalMovement_Journal">
+      <End Role="Journal" EntitySet="Journals" />
+      <End Role="JournalMovement" EntitySet="JournalMovements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Journal" Association="Self.FK_JournalMovementHistory_Journal">
+      <End Role="Journal" EntitySet="Journals" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_JournalMovement" Association="Self.FK_JournalMovementHistory_JournalMovement">
+      <End Role="JournalMovement" EntitySet="JournalMovements" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalMovementHistory_Lookup" Association="Self.FK_JournalMovementHistory_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="JournalMovementHistory" EntitySet="JournalMovementHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
+      <End Role="LookupType" EntitySet="LookupTypes" />
+      <End Role="Lookup" EntitySet="Lookups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup" Association="Self.FK_Sales_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup1" Association="Self.FK_Sales_Lookup1">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Lookup2" Association="Self.FK_Sales_Lookup2">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup" Association="Self.FK_SalesHistory_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup1" Association="Self.FK_SalesHistory_Lookup1">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup2" Association="Self.FK_SalesHistory_Lookup2">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Lookup3" Association="Self.FK_SalesHistory_Lookup3">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesMappingAccount_Lookup" Association="Self.FK_SalesMappingAccount_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="SalesMappingAccount" EntitySet="SalesMappingAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Lookup" Association="Self.FK_Staff_Lookup">
+      <End Role="Lookup" EntitySet="Lookups" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Sales" Association="Self.FK_Sales_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="Sales1" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Staff" Association="Self.FK_Sales_Staff">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Staff1" Association="Self.FK_Sales_Staff1">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Sales" Association="Self.FK_SalesHistory_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_SalesHistory" Association="Self.FK_SalesHistory_SalesHistory">
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+      <End Role="SalesHistory1" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Staff" Association="Self.FK_SalesHistory_Staff">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesHistory_Staff1" Association="Self.FK_SalesHistory_Staff1">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="SalesHistory" EntitySet="SalesHistories" />
+    </AssociationSet>
+    <FunctionImport Name="AccountBegingBalance" IsComposable="true" ReturnType="Collection(CentralDepKeyStageModel.AccountBegingBalance_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AccountBalanceUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="AccountDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AccountInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Limit" Mode="In" Type="Double" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AccountSelect" ReturnType="Collection(String)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AccountSelectDC" ReturnType="Collection(CentralDepKeyStageModel.AccountSelectDC_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AccountSelectWithSub" ReturnType="Collection(CentralDepKeyStageModel.AccountSelectWithSub_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AccountUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Limit" Mode="In" Type="Double" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AirlineDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AirlineInsert">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="SabreCode" Mode="In" Type="String" />
+      <Parameter Name="IATACode" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AirlineSelect" ReturnType="Collection(CentralDepKeyStageModel.AirlineSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="SabreCode" Mode="In" Type="String" />
+      <Parameter Name="IATACode" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AirlineUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="SabreCode" Mode="In" Type="String" />
+      <Parameter Name="IATACode" Mode="In" Type="String" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BranchDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BranchInsert">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Telephone" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BranchSelect" ReturnType="Collection(CentralDepKeyStageModel.BranchSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BranchUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Telephone" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DashboardGetProfit" ReturnType="Collection(CentralDepKeyStageModel.DashboardGetProfit_Result)" />
+    <FunctionImport Name="DashboardGetSalesCounts" ReturnType="Collection(CentralDepKeyStageModel.DashboardGetSalesCounts_Result)" />
+    <FunctionImport Name="DashboardGetSalesStatistics" ReturnType="Collection(CentralDepKeyStageModel.DashboardGetSalesStatistics_Result)" />
+    <FunctionImport Name="DashboardGetStaffAchievements" ReturnType="Collection(CentralDepKeyStageModel.DashboardGetStaffAchievements_Result)" />
+    <FunctionImport Name="JournalDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="JournalInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementAndHistoryDelete">
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementDelete">
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementHistoryInsert">
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalMovementID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="ApprovalStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementHistorySelect" ReturnType="Collection(CentralDepKeyStageModel.JournalMovementHistorySelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="Dateto" Mode="In" Type="DateTime" />
+      <Parameter Name="JournalNumber" Mode="In" Type="Int32" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementHistoryUpdate" ReturnType="Collection(Decimal)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="ApprovalStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="RejectionReason" Mode="In" Type="String" />
+      <Parameter Name="JournalMovementID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementInsert">
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementSelect" ReturnType="Collection(CentralDepKeyStageModel.JournalMovementSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="Dateto" Mode="In" Type="DateTime" />
+      <Parameter Name="JournalNumber" Mode="In" Type="Int32" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JournalMovementUpdate" ReturnType="Collection(Decimal)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="MovementDescription" Mode="In" Type="String" />
+      <Parameter Name="Debit" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="JournalID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalMovementID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="JournalSelect" ReturnType="Collection(CentralDepKeyStageModel.JournalSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalNumber" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="Dateto" Mode="In" Type="DateTime" />
+      <Parameter Name="JournalTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalDate" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="ApprovalStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="JournalUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LogInsert">
+      <Parameter Name="Details" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="Int32" />
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="Type" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LogSelect" ReturnType="Collection(CentralDepKeyStageModel.LogSelect_Result)">
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="Action" Mode="In" Type="Int32" />
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="Type" Mode="In" Type="Int32" />
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LookupDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LookupInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Note" Mode="In" Type="String" />
+      <Parameter Name="LookupOrder" Mode="In" Type="Int32" />
+      <Parameter Name="LookupTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LookupSelect" ReturnType="Collection(CentralDepKeyStageModel.LookupSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Note" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="LookupOrder" Mode="In" Type="Int32" />
+      <Parameter Name="LookupTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LookupTypeDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LookupTypeInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="Title" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LookupTypeSelect" ReturnType="Collection(CentralDepKeyStageModel.LookupTypeSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LookupTypeUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LookupUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Note" Mode="In" Type="String" />
+      <Parameter Name="LookupOrder" Mode="In" Type="Int32" />
+      <Parameter Name="LookupTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MappedAccountSelect">
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="Credit" Mode="In" Type="Boolean" />
+      <Parameter Name="Debit" Mode="In" Type="Boolean" />
+      <Parameter Name="Cost" Mode="In" Type="Boolean" />
+      <Parameter Name="Sales" Mode="In" Type="Boolean" />
+      <Parameter Name="IsRefund" Mode="In" Type="Boolean" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NotificationInsert">
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NotificationNotSeenCount" ReturnType="Collection(CentralDepKeyStageModel.NotificationNotSeenCount_Result)" />
+    <FunctionImport Name="NotificationSelect" ReturnType="Collection(String)">
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+      <Parameter Name="IsSeen" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="NotificationUpdate">
+      <Parameter Name="RelatedID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="OutStandingInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="OsNumber" Mode="In" Type="Int32" />
+      <Parameter Name="Amount" Mode="In" Type="Double" />
+      <Parameter Name="StatusID" Mode="In" Type="Int32" />
+      <Parameter Name="JournalMovementID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="OutStandingSelect" ReturnType="Collection(CentralDepKeyStageModel.OutStandingSelect_Result)">
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="OutStandingSelectMaxOsNumber" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="OutStandingSelectPartial" ReturnType="Collection(CentralDepKeyStageModel.OutStandingSelectPartial_Result)">
+      <Parameter Name="JournalMovementID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RptJournalsSendEmail" />
+    <FunctionImport Name="RptSalesPerPNRReport" ReturnType="Collection(CentralDepKeyStageModel.RptSalesPerPNRReport_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForAirLine" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForAirLine_Result)">
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="StaffID" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForDailySales" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForDailySales_Result)">
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="Vendor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForExpensesOrIncome" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForExpensesOrIncome_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="ExpensesORIncome" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForProfit" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForProfit_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForSales" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForSales_Result)">
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="SubAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForStaffTotalSalesReport" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForStaffTotalSalesReport_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RptSalesSelectForTotalAirLine" ReturnType="Collection(CentralDepKeyStageModel.RptSalesSelectForTotalAirLine_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="RptTrialBalanceReport" ReturnType="Collection(CentralDepKeyStageModel.RptTrialBalanceReport_Result)">
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SalesDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesGroupDelete">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesGroupInsert">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesGroupSelect" ReturnType="Collection(CentralDepKeyStageModel.SalesGroupSelect_Result)">
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesHistoryDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesHistoryInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="CardNumber" Mode="In" Type="String" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Destination" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="Fare" Mode="In" Type="Double" />
+      <Parameter Name="Tax" Mode="In" Type="Double" />
+      <Parameter Name="TotalCost" Mode="In" Type="Double" />
+      <Parameter Name="SalesAmount" Mode="In" Type="Double" />
+      <Parameter Name="Profit" Mode="In" Type="Double" />
+      <Parameter Name="Cash" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Visa" Mode="In" Type="Double" />
+      <Parameter Name="Advance" Mode="In" Type="Double" />
+      <Parameter Name="Card" Mode="In" Type="Double" />
+      <Parameter Name="Complementary" Mode="In" Type="Double" />
+      <Parameter Name="Commision" Mode="In" Type="Double" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumberPNR" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountantStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="SubAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="RecievableMainAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="CreditAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="HistoryCreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="BankAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="RefRemarks" Mode="In" Type="String" />
+      <Parameter Name="RefDescription" Mode="In" Type="String" />
+      <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SalesHistorySelect" ReturnType="Collection(CentralDepKeyStageModel.SalesHistorySelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="HistoryCreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="ApproveStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="TransferDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SalesHistoryUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="CardNumber" Mode="In" Type="String" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Destination" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="Fare" Mode="In" Type="Double" />
+      <Parameter Name="Tax" Mode="In" Type="Double" />
+      <Parameter Name="TotalCost" Mode="In" Type="Double" />
+      <Parameter Name="SalesAmount" Mode="In" Type="Double" />
+      <Parameter Name="Profit" Mode="In" Type="Double" />
+      <Parameter Name="Cash" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Visa" Mode="In" Type="Double" />
+      <Parameter Name="Advance" Mode="In" Type="Double" />
+      <Parameter Name="Card" Mode="In" Type="Double" />
+      <Parameter Name="Complementary" Mode="In" Type="Double" />
+      <Parameter Name="Commision" Mode="In" Type="Double" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumberPNR" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountantStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="SubAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="RejectionReason" Mode="In" Type="String" />
+      <Parameter Name="ApproveStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="RecievableMainAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="CreditAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BankAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="RefAmountToCustomer" Mode="In" Type="Double" />
+      <Parameter Name="RefRemarks" Mode="In" Type="String" />
+      <Parameter Name="RefDescription" Mode="In" Type="String" />
+      <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SalesInsert" ReturnType="Collection(CentralDepKeyStageModel.SalesInsert_Result)">
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="CardNumber" Mode="In" Type="String" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Destination" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="Fare" Mode="In" Type="Double" />
+      <Parameter Name="Tax" Mode="In" Type="Double" />
+      <Parameter Name="TotalCost" Mode="In" Type="Double" />
+      <Parameter Name="SalesAmount" Mode="In" Type="Double" />
+      <Parameter Name="Profit" Mode="In" Type="Double" />
+      <Parameter Name="Cash" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Visa" Mode="In" Type="Double" />
+      <Parameter Name="Advance" Mode="In" Type="Double" />
+      <Parameter Name="Card" Mode="In" Type="Double" />
+      <Parameter Name="Complementary" Mode="In" Type="Double" />
+      <Parameter Name="Commision" Mode="In" Type="Double" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceNumberPNR" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountantStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="SubAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="RecievableMainAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="CreditAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BankAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="RefPaid" Mode="In" Type="Boolean" />
+      <Parameter Name="RefAmountFromProvider" Mode="In" Type="Double" />
+      <Parameter Name="RefRemarks" Mode="In" Type="String" />
+      <Parameter Name="RefDescription" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SalesMappingAccountPaymentMethodSelect" ReturnType="Collection(CentralDepKeyStageModel.SalesMappingAccountPaymentMethodSelect_Result)">
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesMappingAccountSelect" ReturnType="Collection(CentralDepKeyStageModel.SalesMappingAccountSelect_Result)">
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesSelect" ReturnType="Collection(CentralDepKeyStageModel.SalesSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="RefPaid" Mode="In" Type="Boolean" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="NotSalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumberPNR" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SalesSelectMaxInvoice" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SalesUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="TicketNumber" Mode="In" Type="String" />
+      <Parameter Name="CardNumber" Mode="In" Type="String" />
+      <Parameter Name="PaxName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Destination" Mode="In" Type="String" />
+      <Parameter Name="PNR" Mode="In" Type="String" />
+      <Parameter Name="Fare" Mode="In" Type="Double" />
+      <Parameter Name="Tax" Mode="In" Type="Double" />
+      <Parameter Name="TotalCost" Mode="In" Type="Double" />
+      <Parameter Name="SalesAmount" Mode="In" Type="Double" />
+      <Parameter Name="Profit" Mode="In" Type="Double" />
+      <Parameter Name="Cash" Mode="In" Type="Double" />
+      <Parameter Name="Credit" Mode="In" Type="Double" />
+      <Parameter Name="Visa" Mode="In" Type="Double" />
+      <Parameter Name="Advance" Mode="In" Type="Double" />
+      <Parameter Name="Card" Mode="In" Type="Double" />
+      <Parameter Name="Complementary" Mode="In" Type="Double" />
+      <Parameter Name="Commision" Mode="In" Type="Double" />
+      <Parameter Name="DKNumber" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceNumber" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceNumberPNR" Mode="In" Type="Int32" />
+      <Parameter Name="SalesTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentMethodID" Mode="In" Type="Int32" />
+      <Parameter Name="AirlineID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountantStaffID" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="SubAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="RefAmountFromProvider" Mode="In" Type="Double" />
+      <Parameter Name="SalesStatusID" Mode="In" Type="Int32" />
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="RefPaid" Mode="In" Type="Boolean" />
+      <Parameter Name="RecievableMainAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="CreditAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="BankAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="RefAmountToCustomer" Mode="In" Type="Double" />
+      <Parameter Name="RefRemarks" Mode="In" Type="String" />
+      <Parameter Name="RefDescription" Mode="In" Type="String" />
+      <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="StaffDelete">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="StaffInsert" ReturnType="Collection(Decimal)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="String" />
+      <Parameter Name="UserPages" Mode="In" Type="String" />
+      <Parameter Name="UserPermissions" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="StaffSelect" ReturnType="Collection(CentralDepKeyStageModel.StaffSelect_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IsDeleted" Mode="In" Type="Boolean" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="StaffUpdate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="BranchID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleID" Mode="In" Type="Int32" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="String" />
+      <Parameter Name="UserPages" Mode="In" Type="String" />
+      <Parameter Name="UserPermissions" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="TotalAdvance">
+      <Parameter Name="AccountNumber" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="AccountSelectDC_Result">
+    <Property Type="Double" Name="Debit" Nullable="false" />
+    <Property Type="Double" Name="Credit" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="AccountSelectWithSub_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="503" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="AirlineSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="SabreCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="IATACode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="BranchSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Telephone" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DashboardGetProfit_Result">
+    <Property Type="Double" Name="Fare" Nullable="true" />
+    <Property Type="Double" Name="TAX" Nullable="true" />
+    <Property Type="Double" Name="TotalCost" Nullable="true" />
+    <Property Type="Double" Name="SalesAmount" Nullable="true" />
+    <Property Type="Double" Name="Profit" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DashboardGetSalesCounts_Result">
+    <Property Type="Int32" Name="OnlineSales" Nullable="true" />
+    <Property Type="Int32" Name="VoidedSales" Nullable="true" />
+    <Property Type="Int32" Name="RefundedSales" Nullable="true" />
+    <Property Type="Int32" Name="SalesWaitingUpdate" Nullable="true" />
+    <Property Type="Int32" Name="SalesWaitingVoid" Nullable="true" />
+    <Property Type="Int32" Name="SalesWaitingDelete" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedSalesThisMonth" Nullable="true" />
+    <Property Type="Int32" Name="VoidedSalesThisMonth" Nullable="true" />
+    <Property Type="Int32" Name="DeleteedSalesThisMonth" Nullable="true" />
+    <Property Type="String" Name="VoidFlag" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="VoidPercentage" Nullable="true" />
+    <Property Type="String" Name="RefundFlag" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="RefundPercentage" Nullable="true" />
+    <Property Type="Int32" Name="TransferSalesToday" Nullable="true" />
+    <Property Type="Int32" Name="Completed" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DashboardGetSalesStatistics_Result">
+    <Property Type="Int32" Name="Day" Nullable="true" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="Int32" Name="Year" Nullable="true" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DashboardGetStaffAchievements_Result">
+    <Property Type="Decimal" Name="Progress" Nullable="true" Precision="26" Scale="12" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="TotalAmount" Nullable="true" />
+    <Property Type="Int32" Name="StaffCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="JournalMovementHistorySelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="JournalID" Nullable="false" />
+    <Property Type="Double" Name="Debit" Nullable="true" />
+    <Property Type="Double" Name="Credit" Nullable="true" />
+    <Property Type="String" Name="MovementDescription" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="JournalNumber" Nullable="false" />
+    <Property Type="DateTime" Name="JournalDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="JournalMovementSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="JournalID" Nullable="false" />
+    <Property Type="Double" Name="Debit" Nullable="true" />
+    <Property Type="Double" Name="Credit" Nullable="true" />
+    <Property Type="String" Name="MovementDescription" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="JournalNumber" Nullable="false" />
+    <Property Type="DateTime" Name="JournalDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="JournalMovementID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="JournalSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="JournalNumber" Nullable="false" />
+    <Property Type="Int32" Name="JournalTypeID" Nullable="false" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="StaffID" Nullable="true" />
+    <Property Type="DateTime" Name="JournalDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="SalesID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="JournalTypeTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="StaffName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="MovTypeTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Int32" Name="HistoryID" Nullable="true" />
+    <Property Type="Int32" Name="ApprovalStatusID" Nullable="true" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LogSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Details" Nullable="true" />
+    <Property Type="Int32" Name="Action" Nullable="true" />
+    <Property Type="Int32" Name="RelatedID" Nullable="true" />
+    <Property Type="Int32" Name="StaffID" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Type" Nullable="true" />
+    <Property Type="String" Name="StaffName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="ActionView" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="TypeView" Nullable="true" MaxLength="16" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LookupSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LookupOrder" Nullable="true" />
+    <Property Type="String" Name="Note" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="LookupTypeID" Nullable="false" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="RelatedID" Nullable="true" />
+    <Property Type="String" Name="LookupTypeTitle" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LookupTypeID1" Nullable="false" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LookupTypeSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="250" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+    <Property Type="Int32" Name="Lookups" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="NotificationNotSeenCount_Result">
+    <Property Type="Int32" Name="NotificationsCount" Nullable="true" />
+    <Property Type="Int32" Name="NotificationsSalesCount" Nullable="true" />
+    <Property Type="Int32" Name="NotificationsJournalCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OutStandingSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Debit" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="String" Name="MovementDescription" Nullable="true" />
+    <Property Type="Int32" Name="JournalID" Nullable="false" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="Int32" Name="JournalMovementID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OutStandingSelectPartial_Result">
+    <Property Type="String" Name="OsNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OsDate" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="RptSalesPerPNRReport_Result">
+    <Property Type="Decimal" Name="PNRFare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="PNRTax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="PNRCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="PNRSalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="PNRProfit" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForAirLine_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Fare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="IsssuedByName" Nullable="false" MaxLength="250" />
+    <Property Type="Double" Name="CommisionAmount" Nullable="true" />
+    <Property Type="Decimal" Name="Profit" Nullable="true" Precision="36" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForDailySales_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaxName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Fare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Cash" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Visa" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Advance" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Card" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Complementary" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Int64" Name="DKNumber" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AirlineID" Nullable="true" />
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="SubAccountID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="String" Name="TicketNumber1" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="PaymentMethodTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle1" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForExpensesOrIncome_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForProfit_Result">
+    <Property Type="Decimal" Name="Debit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Profit" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForSales_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaxName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Fare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Commision" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="Int64" Name="DKNumber" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AirlineID" Nullable="true" />
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="SubAccountID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="String" Name="TicketNumber1" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="PaymentMethodTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle1" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForStaffTotalSalesReport_Result">
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="RefundSales" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="RefundCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="String" Name="IsssuedByName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ProfitWithRefund" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="RptSalesSelectForTotalAirLine_Result">
+    <Property Type="Decimal" Name="AirlineFare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="AirlineTax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="AirlineCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="AirlineSalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="AirlineProfit" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="AirlineCommision" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="Int32" Name="AirLineID" Nullable="false" />
+    <Property Type="String" Name="AirlineName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="RptTrialBalanceReport_Result">
+    <Property Type="Double" Name="Debit" Nullable="true" />
+    <Property Type="Double" Name="Credit" Nullable="true" />
+    <Property Type="Decimal" Name="BeginningDebit" Nullable="true" Precision="18" Scale="3" />
+    <Property Type="Decimal" Name="BeginningCredit" Nullable="true" Precision="18" Scale="3" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="AccountID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SalesGroupSelect_Result">
+    <Property Type="Int32" Name="SaleID" Nullable="false" />
+    <Property Type="Int32" Name="InvoiceNumberGroup" Nullable="false" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaxName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Destination" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="DeletionDate" Nullable="true" Precision="23" />
+    <Property Type="Double" Name="Fare" Nullable="true" />
+    <Property Type="Double" Name="Tax" Nullable="true" />
+    <Property Type="Double" Name="TotalCost" Nullable="true" />
+    <Property Type="Double" Name="SalesAmount" Nullable="true" />
+    <Property Type="Double" Name="Profit" Nullable="true" />
+    <Property Type="Double" Name="Cash" Nullable="true" />
+    <Property Type="Double" Name="Credit" Nullable="true" />
+    <Property Type="Double" Name="Visa" Nullable="true" />
+    <Property Type="Double" Name="Advance" Nullable="true" />
+    <Property Type="Double" Name="Card" Nullable="true" />
+    <Property Type="Double" Name="Complementary" Nullable="true" />
+    <Property Type="Double" Name="Commision" Nullable="true" />
+    <Property Type="Int64" Name="DKNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumberPNR" Nullable="true" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Double" Name="RefAmountFromProvider" Nullable="true" />
+    <Property Type="Double" Name="RefAmountToCustomer" Nullable="true" />
+    <Property Type="Boolean" Name="RefPaid" Nullable="true" />
+    <Property Type="String" Name="RefRemarks" Nullable="true" />
+    <Property Type="String" Name="RefDescription" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AirlineID" Nullable="true" />
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountantStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="Int32" Name="SubAccountID" Nullable="true" />
+    <Property Type="Int32" Name="ParentID" Nullable="true" />
+    <Property Type="Int32" Name="RecievableMainAccountID" Nullable="true" />
+    <Property Type="Int32" Name="CreditAccountID" Nullable="true" />
+    <Property Type="Int32" Name="BankAccountID" Nullable="true" />
+    <Property Type="DateTime" Name="TransferDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SalesTypeTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaymentMethodTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountantName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle1" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesStatusTitle" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RelatedID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SalesHistorySelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaxName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Destination" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="DeletionDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Fare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Cash" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Visa" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Advance" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Card" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Complementary" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Double" Name="Commision" Nullable="false" />
+    <Property Type="Int64" Name="DKNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumberPNR" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AirlineID" Nullable="true" />
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountantStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="Int32" Name="BankAccountID" Nullable="true" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="SubAccountID" Nullable="true" />
+    <Property Type="Int32" Name="RecievableMainAccountID" Nullable="true" />
+    <Property Type="Int32" Name="CreditAccountID" Nullable="true" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="ApproveStatusID" Nullable="true" />
+    <Property Type="Int32" Name="SaleID" Nullable="true" />
+    <Property Type="String" Name="RefRemarks" Nullable="true" />
+    <Property Type="String" Name="RefDescription" Nullable="true" />
+    <Property Type="String" Name="SalesTypeTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="PaymentMethodTitle" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AccountantName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="RecievableMainAccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreditAccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle1" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="SalesStatusTitle" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="RelatedID" Nullable="true" />
+    <Property Type="Int32" Name="HistoryCreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID1" Nullable="true" />
+    <Property Type="Int32" Name="TotalRows" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SalesInsert_Result">
+    <Property Type="Decimal" Name="Identity" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="InvoiceNumberPNR" Nullable="false" />
+    <Property Type="Int32" Name="TicketExist" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SalesMappingAccountPaymentMethodSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SalesMappingAccountSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="DebitCredit" Nullable="true" />
+    <Property Type="Int32" Name="SalesCost" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SalesSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CardNumber" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaxName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Destination" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PNR" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="DeletionDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Fare" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Tax" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Cash" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Credit" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Visa" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Advance" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Card" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Decimal" Name="Complementary" Nullable="false" Precision="36" Scale="4" />
+    <Property Type="Double" Name="Commision" Nullable="false" />
+    <Property Type="Int64" Name="DKNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumber" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNumberPNR" Nullable="true" />
+    <Property Type="Int32" Name="SalesTypeID" Nullable="true" />
+    <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+    <Property Type="Int32" Name="AirlineID" Nullable="true" />
+    <Property Type="Int32" Name="CreatedStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountantStaffID" Nullable="true" />
+    <Property Type="Int32" Name="AccountID" Nullable="true" />
+    <Property Type="Int32" Name="SubAccountID" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="SalesStatusID" Nullable="true" />
+    <Property Type="String" Name="TicketNumber" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RecievableMainAccountID" Nullable="true" />
+    <Property Type="Int32" Name="CreditAccountID" Nullable="true" />
+    <Property Type="Int32" Name="BankAccountID" Nullable="true" />
+    <Property Type="Double" Name="RefAmountFromProvider" Nullable="true" />
+    <Property Type="Double" Name="RefAmountToCustomer" Nullable="true" />
+    <Property Type="Boolean" Name="RefPaid" Nullable="true" />
+    <Property Type="Int32" Name="ParentID" Nullable="true" />
+    <Property Type="String" Name="RefRemarks" Nullable="true" />
+    <Property Type="String" Name="RefDescription" Nullable="true" />
+    <Property Type="Int32" Name="BranchID1" Nullable="true" />
+    <Property Type="String" Name="SalesTypeTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PaymentMethodTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AirlineCode" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountantName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesTypeTitle1" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SalesStatusTitle" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="HistoryID" Nullable="true" />
+    <Property Type="String" Name="SalesHistoryStatus" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RelatedID" Nullable="true" />
+    <Property Type="Decimal" Name="OriginalSalesAmount" Nullable="true" Precision="36" Scale="4" />
+    <Property Type="Int32" Name="SalesHistoryStatusID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="StaffSelect_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Int32" Name="BranchID" Nullable="true" />
+    <Property Type="Int32" Name="RoleID" Nullable="true" />
+    <Property Type="String" Name="UserPages" Nullable="true" />
+    <Property Type="String" Name="UserPermissions" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Limit" Nullable="true" MaxLength="250" />
+  </ComplexType>
+</Schema>
