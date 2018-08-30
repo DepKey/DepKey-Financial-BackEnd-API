@@ -3462,7 +3462,6 @@
           <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
           <Property Type="Int32" Name="RelatedID" Nullable="true" />
           <Property Type="String" Name="LookupTypeTitle" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="LookupTypeID1" Nullable="false" />
           <Property Type="Int32" Name="TotalRows" Nullable="true" />
         </ComplexType>
         <ComplexType Name="LookupTypeSelect_Result">
@@ -4362,7 +4361,6 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
                 <ScalarProperty Name="LookupTypeTitle" ColumnName="LookupTypeTitle" />
-                <ScalarProperty Name="LookupTypeID1" ColumnName="LookupTypeID1" />
                 <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
               </ComplexTypeMapping>
             </ResultMapping>

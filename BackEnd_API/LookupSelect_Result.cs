@@ -22,7 +22,6 @@ namespace BackEnd_API
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<int> RelatedID { get; set; }
         public string LookupTypeTitle { get; set; }
-        public int LookupTypeID1 { get; set; }
         public Nullable<int> TotalRows { get; set; }
     }
 }

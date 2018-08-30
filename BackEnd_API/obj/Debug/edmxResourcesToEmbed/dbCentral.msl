@@ -514,7 +514,6 @@
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
           <ScalarProperty Name="LookupTypeTitle" ColumnName="LookupTypeTitle" />
-          <ScalarProperty Name="LookupTypeID1" ColumnName="LookupTypeID1" />
           <ScalarProperty Name="TotalRows" ColumnName="TotalRows" />
         </ComplexTypeMapping>
       </ResultMapping>
