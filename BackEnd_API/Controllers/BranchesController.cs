@@ -13,22 +13,19 @@ using Newtonsoft.Json;
 using BackEnd_API.Models.SearchParams;
 namespace BackEnd_API.Controllers
 {
-    public class LookupTypesController : ApiController
+    public class BranchesController : ApiController
     {
         private CentralDepKeyStageEntities db = new CentralDepKeyStageEntities();
-        
-
-
         [HttpPost]
-        public HttpResponseMessage SelectLookupType(LookupTypeParams obj,int pageNumber = 1,int pageSize = 10)
+        public HttpResponseMessage SelectBranch(BranchParams obj,int pageNumber = 1,int pageSize = 10)
         {
             try
             {
                 if (obj == null)
                     goto ThrowBadRequest;
 
-                var lookups = db.LookupTypeSelect(obj.ID == 0 ? null : (int?)obj.ID, obj.Title, obj.IsDeleted, pageNumber, pageSize);
-                return Request.CreateResponse(HttpStatusCode.OK, lookups);
+                var branches = db.BranchSelect(obj.ID,obj.Name,obj.IsDeleted,pageNumber,pageSize);
+                return Request.CreateResponse(HttpStatusCode.OK, branches);
             }
             catch (Exception)
             {
@@ -37,17 +34,16 @@ namespace BackEnd_API.Controllers
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
         [HttpPost]
-        public HttpResponseMessage InsertLookupType(LookupTypeParams obj)
+        public HttpResponseMessage InsertBranch(BranchParams obj)
         {
             try
             {
                 if (obj == null)
                     goto ThrowBadRequest;
 
-                var lookups = db.LookupTypeInsert(obj.Title);
-                return Request.CreateResponse(HttpStatusCode.OK, lookups);
+                var branch = db.BranchInsert(obj.Name,obj.Telephone,obj.Address);
+                return Request.CreateResponse(HttpStatusCode.OK, branch);
             }
             catch (Exception)
             {
@@ -56,17 +52,16 @@ namespace BackEnd_API.Controllers
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
         [HttpPost]
-        public HttpResponseMessage UpdateLookupType(LookupTypeParams obj)
+        public HttpResponseMessage UpdateBranch(BranchParams obj)
         {
             try
             {
                 if (obj == null)
                     goto ThrowBadRequest;
 
-                var lookups = db.LookupTypeUpdate(obj.ID,obj.Title);
-                return Request.CreateResponse(HttpStatusCode.OK, lookups);
+                var branch = db.BranchUpdate(obj.ID,obj.Name, obj.Telephone, obj.Address);
+                return Request.CreateResponse(HttpStatusCode.OK, branch);
             }
             catch (Exception)
             {
@@ -75,17 +70,16 @@ namespace BackEnd_API.Controllers
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
         [HttpPost]
-        public HttpResponseMessage DeleteLookupType(LookupTypeParams obj)
+        public HttpResponseMessage DeleteBranch(BranchParams obj)
         {
             try
             {
                 if (obj == null)
                     goto ThrowBadRequest;
 
-                var lookups = db.LookupTypeDelete(obj.ID);
-                return Request.CreateResponse(HttpStatusCode.OK, lookups);
+                var branch = db.BranchDelete(obj.ID);
+                return Request.CreateResponse(HttpStatusCode.OK, branch);
             }
             catch (Exception)
             {
@@ -94,7 +88,6 @@ namespace BackEnd_API.Controllers
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

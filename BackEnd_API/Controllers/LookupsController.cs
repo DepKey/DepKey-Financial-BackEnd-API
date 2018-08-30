@@ -108,9 +108,5 @@ namespace BackEnd_API.Controllers
             }
             base.Dispose(disposing);
         }
-        private bool LookupExists(int id)
-        {
-            return db.Lookups.Count(e => e.ID == id) > 0;
-        }
     }
 }

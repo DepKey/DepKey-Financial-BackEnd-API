@@ -130,7 +130,9 @@
     <Compile Include="BranchSelect_Result.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\LookupsController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\LookupTypesController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="DashboardGetProfit_Result.cs">
@@ -199,7 +201,9 @@
     <Compile Include="LookupTypeSelect_Result.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchParams\BranchParams.cs" />
     <Compile Include="Models\SearchParams\LookupParams.cs" />
+    <Compile Include="Models\SearchParams\LogParams.cs" />
     <Compile Include="Models\SearchParams\LookupTypeParams.cs" />
     <Compile Include="Models\SearchParams\SelectSalesParams.cs" />
     <Compile Include="Notification.cs">
