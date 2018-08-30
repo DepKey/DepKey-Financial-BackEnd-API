@@ -130,11 +130,12 @@
     <Compile Include="BranchSelect_Result.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\LookupsController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\LookupTypesController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="DashboardGetProfit_Result.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
