@@ -1,2 +1,4 @@
 BackEnd_API/Web.config
 .vs/
+BackEnd_API/bin/
+BackEnd_API/obj/
