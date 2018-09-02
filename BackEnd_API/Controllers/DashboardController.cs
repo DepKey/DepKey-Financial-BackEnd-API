@@ -29,6 +29,45 @@ namespace BackEnd_API.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        [HttpPost]
+        public HttpResponseMessage DashboardGetSalesStatistics()
+        {
+            try
+            {
+                var Dashboard = db.DashboardGetSalesStatistics();
+                return Request.CreateResponse(HttpStatusCode.OK, Dashboard);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage DashboardGetStaffAchievements()
+        {
+            try
+            {
+                var Dashboard = db.DashboardGetStaffAchievements();
+                return Request.CreateResponse(HttpStatusCode.OK, Dashboard);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage DashboardGetSalesCounts()
+        {
+            try
+            {
+                var Dashboard = db.DashboardGetSalesCounts();
+                return Request.CreateResponse(HttpStatusCode.OK, Dashboard);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -13,16 +13,73 @@ using Newtonsoft.Json;
 using BackEnd_API.Models.SearchParams;
 namespace BackEnd_API.Controllers
 {
-    public class DashboardController : ApiController
+    public class OutstandingController : ApiController
     {
         private CentralDepKeyStageEntities db = new CentralDepKeyStageEntities();
+
         [HttpPost]
-        public HttpResponseMessage DashboardGetProfit()
+        public HttpResponseMessage InsertOutstanding(OutstandingParams obj)
         {
             try
             {
-                var Dashboard = db.DashboardGetProfit();
-                return Request.CreateResponse(HttpStatusCode.OK, Dashboard);
+                if (obj == null)
+                    goto ThrowBadRequest;
+                var Outstanding = db.OutStandingInsert(obj.OsNumber, obj.Amount, obj.StatusID, obj.JournalMovementID);
+                return Request.CreateResponse(HttpStatusCode.OK, Outstanding);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SelectOutstanding(OutstandingParams obj)
+        {
+            try
+            {
+                if (obj == null)
+                    goto ThrowBadRequest;
+
+                var Outstanding = db.OutStandingSelect(obj.AccountID, obj.DateFrom, obj.DateTo);
+                return Request.CreateResponse(HttpStatusCode.OK, Outstanding);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SelectOutstandingPartial(OutstandingParams obj)
+        {
+            try
+            {
+                if (obj == null)
+                    goto ThrowBadRequest;
+
+                var Outstanding = db.OutStandingSelectPartial(obj.JournalMovementID);
+                return Request.CreateResponse(HttpStatusCode.OK, Outstanding);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage OutStandingSelectMaxOsNumber(OutstandingParams obj)
+        {
+            try
+            {
+                var Outstanding = db.OutStandingSelectMaxOsNumber();
+                return Request.CreateResponse(HttpStatusCode.OK, Outstanding);
             }
             catch (Exception)
             {

@@ -131,11 +131,13 @@
       <DependentUpon>dbCentral.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\BranchesController.cs" />
+    <Compile Include="Controllers\OutstandingController.cs" />
     <Compile Include="Controllers\LookupsController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\LookupTypesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="DashboardGetProfit_Result.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
@@ -208,6 +210,7 @@
     <Compile Include="Models\SearchParams\LogParams.cs" />
     <Compile Include="Models\SearchParams\LookupTypeParams.cs" />
     <Compile Include="Models\SearchParams\NotificationParams.cs" />
+    <Compile Include="Models\SearchParams\OutstandingParams.cs" />
     <Compile Include="Models\SearchParams\SelectSalesParams.cs" />
     <Compile Include="Notification.cs">
       <DependentUpon>dbCentral.tt</DependentUpon>
